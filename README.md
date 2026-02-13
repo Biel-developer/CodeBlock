@@ -16,8 +16,40 @@
 
 ## Escolhas do Projeto
 
-**Tecnologia
-BotPython + Web Scrapping
-Banco de dados: Postgree
-Segurança: ?
-Infraestrutura: Servidor dedicado
+### Tecnologia
+
+## Automação
+- **Bot Python**
+- **Web Scraping**
+- **Agente de IA**
+
+## Banco de Dados
+- **PostgreSQL**
+
+## Infraestrutura
+- Servidor dedicado
+
+### API
+- **postgree**
+- **Agentes IA**
+- **sistema de pagamento**
+- **Servidor dedicado**
+
+### Requisito confritante
+- adefinir
+
+### Desempenho
+- adefinir
+
+### Segurança
+- fornecida por um terceiro
+
+### Escalabilidade
+- **Capacidade de lidar com o aumento de trafego de serviços postados pelos usuarios no site**
+
+### Localidade
+- **expanção para outros municipios do estado**
+
+### Custo 
+- **Servidor**
+- **AWS**
