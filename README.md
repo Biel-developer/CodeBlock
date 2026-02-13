@@ -13,3 +13,11 @@
 
 4. **Alexandre Lozano de Souza**  
    RA: 23003803-2
+
+## Escolhas do Projeto
+
+**Tecnologia
+BotPython + Web Scrapping
+Banco de dados: Postgree
+Segurança: ?
+Infraestrutura: Servidor dedicado
