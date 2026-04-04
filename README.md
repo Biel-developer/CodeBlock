@@ -14,6 +14,15 @@
 4. **Alexandre Lozano de Souza**  
    RA: 23003803-2
 
+5. **Daniel Andrade**  
+   RA: 23000397-2
+
+6. **Felipe Broetto Araujo**  
+   RA: 23167564-2
+
+7. **Felipe Duarte Milleo Consulim**  
+   RA: 23011046-2
+
 ## Escolhas do Projeto
 
 ### Tecnologia
