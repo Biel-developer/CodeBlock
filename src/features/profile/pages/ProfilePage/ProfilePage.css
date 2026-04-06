@@ -1,0 +1,125 @@
+.profile-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+}
+
+.profile-header h2 {
+  margin: 0 0 0.5rem 0;
+  color: #000000;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.profile-card,
+.profile-info-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.profile-card .ant-card-body,
+.profile-info-card .ant-card-body {
+  padding: 2rem;
+}
+
+.profile-section {
+  margin-bottom: 1.5rem;
+}
+
+.profile-section h4 {
+  margin: 0 0 0.25rem 0;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-item .ant-typography {
+  margin: 0;
+}
+
+.form-actions {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+/* Ant Design overrides for black/white theme */
+.profile-page .ant-btn-primary {
+  background: #000000;
+  border-color: #000000;
+  height: 44px;
+  font-weight: 500;
+}
+
+.profile-page .ant-btn-primary:hover {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+}
+
+.profile-page .ant-btn-primary:disabled {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+}
+
+.profile-page .ant-input-affix-wrapper,
+.profile-page .ant-input {
+  border-radius: 6px;
+}
+
+.profile-page .ant-input-affix-wrapper:focus,
+.profile-page .ant-input-affix-wrapper-focused,
+.profile-page .ant-input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page .ant-form-item-label > label {
+  font-weight: 500;
+  color: #000000;
+}
+
+.profile-page .ant-divider {
+  margin: 1.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-info-card {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 1rem;
+  }
+
+  .profile-card .ant-card-body,
+  .profile-info-card .ant-card-body {
+    padding: 1.5rem;
+  }
+
+  .profile-header h2 {
+    font-size: 24px;
+  }
+}
