@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSideBar } from '@context/SideBar';
 import { useAuth } from '@context/UserAuthentication';
+import { House, Search, PanelsTopLeft, Trophy, LogOut, Settings } from 'lucide-react';
 import './AppSideBar.css';
 
 export function AppSideBar() {
@@ -28,33 +29,28 @@ export function AppSideBar() {
       {/* Navigation */}
       <nav className="sidebar-nav">
         <div className="nav-section">
-          <div className="nav-section-title">Menu Principal</div>
-          
-          <Link to="/" className={`sidebar-link ${isActive('/')}`}>
-            <span className="link-icon">📊</span>
-            <span className="link-text">Dashboard</span>
-          </Link>
+          <div className="nav-section-title">Geral</div>
 
           <Link to="/feed" className={`sidebar-link ${isActive('/feed')}`}>
-            <span className="link-icon">📰</span>
+            <span className="link-icon"><House /></span>
             <span className="link-text">Feed</span>
           </Link>
 
           <Link to="/projects" className={`sidebar-link ${isActive('/projects')}`}>
-            <span className="link-icon">🔍</span>
+            <span className="link-icon"><Search /></span>
             <span className="link-text">Buscar Projetos</span>
           </Link>
 
           <Link to="/freelancers" className={`sidebar-link ${isActive('/freelancers')}`}>
-            <span className="link-icon">💻</span>
+            <span className="link-icon"><PanelsTopLeft /></span>
             <span className="link-text">Freelancers</span>
           </Link>
 
           <Link to="/ranking" className={`sidebar-link ${isActive('/ranking')}`}>
-            <span className="link-icon">🏆</span>
+            <span className="link-icon"><Trophy /></span>
             <span className="link-text">Ranking</span>
           </Link>
-          
+
           {user?.role === 'admin' && (
             <Link to="/users" className={`sidebar-link ${isActive('/users')}`}>
               <span className="link-icon">👥</span>
@@ -86,6 +82,16 @@ export function AppSideBar() {
             <span className="user-name">{user?.name || 'Usuário'}</span>
             <span className="user-role">{user?.role === 'admin' ? 'Administrador' : 'Cliente'}</span>
           </div>
+        </div>
+
+        <div className="sidebar-footer-actions">
+          <Link to="/profile" className={`settings-link ${isActive('/profile')}`}>
+            <span className="link-icon"><Settings color='#fff' /></span>
+            <span className="setting-text">Configurações Perfil</span>
+          </Link>
+          <button className="btn-logout" >
+            <LogOut size={20} />
+          </button>
         </div>
       </div>
     </aside>

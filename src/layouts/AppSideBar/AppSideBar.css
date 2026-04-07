@@ -233,6 +233,49 @@
   display: block;
 }
 
+.sidebar-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 23px;
+}
+
+.sidebar-footer-actions .sidebar-link {
+  flex: 1;
+}
+
+.btn-logout {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-logout:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.settings-link {
+  display: flex;
+  padding: 10px 12px;
+  gap: 5px;
+  align-items: center;
+}
+
+.setting-text {
+  color: white;
+  font-size: 0.975rem;
+}
+
 /* Scrollbar */
 .app-sidebar::-webkit-scrollbar {
   width: 6px;
