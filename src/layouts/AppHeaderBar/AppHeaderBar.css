@@ -75,6 +75,27 @@
   gap: 1.5rem;
 }
 
+.btn-logout-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e0e0e0;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-logout-header:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
 .header-user-dropdown {
   display: flex;
   align-items: center;
@@ -93,9 +114,6 @@
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-
-.header-user-name {
-  color: #e0e0e0;
   font-weight: 500;
   font-size: 14px;
   max-width: 150px;

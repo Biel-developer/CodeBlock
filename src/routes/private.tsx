@@ -3,7 +3,7 @@ import { DashboardRoutes } from '@features/dashboard/routes';
 import { UsersRoutes } from '@features/users/routes';
 import { ProfileRoutes } from '@features/profile/routes';
 import { FeedRoutes } from '@features/feed/routes';
-import { ProjectsRoutes } from '@features/projects/routes';
+import { ProjectsRoutes, ProjetoRoutes } from '@features/projects/routes';
 import { FreelancersRoutes } from '@features/freelancers/routes';
 import { RankingRoutes } from '@features/ranking/routes';
 import { MyProfileRoutes } from '@features/my-profile/routes';
@@ -25,6 +25,10 @@ export const privateRoutes: RouteObject[] = [
   {
     path: '/projects/*',
     element: <ProjectsRoutes />,
+  },
+  {
+    path: '/projetos/*',
+    element: <ProjetoRoutes />,
   },
   {
     path: '/freelancers/*',

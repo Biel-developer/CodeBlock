@@ -1,11 +1,8 @@
 ﻿import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, Dropdown } from 'antd';
-import { UserOutlined, LogoutOutlined, UserSwitchOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
 import { useAuth } from '@context/UserAuthentication';
 import { useSideBar } from '@context/SideBar';
-import { Bell, CheckCheck, Briefcase, MessageSquare, Star } from 'lucide-react';
+import { Bell, CheckCheck, Briefcase, MessageSquare, Star, LogOut } from 'lucide-react';
 import './AppHeaderBar.css';
 
 const mockNotifications = [
@@ -46,36 +43,6 @@ export function AppHeaderBar() {
 
   const markAllRead = () => {
     setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-  };
-
-  const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
-    if (key === 'profile') {
-      navigate('/profile');
-    } else if (key === 'logout') {
-      logout();
-      navigate('/login');
-    }
-  };
-
-  const menuItems: MenuProps['items'] = [
-    {
-      key: 'profile',
-      label: 'Meu Perfil',
-      icon: <UserSwitchOutlined />,
-    },
-    {
-      type: 'divider',
-    },
-    {
-      key: 'logout',
-      label: 'Sair',
-      icon: <LogoutOutlined />,
-      danger: true,
-    },
-  ];
-
-  const getAvatarColor = (role?: string) => {
-    return role === 'admin' ? '#faad14' : '#1677ff';
   };
 
   return (
@@ -135,23 +102,17 @@ export function AppHeaderBar() {
           )}
         </div>
 
-        {user && (
-          <Dropdown 
-            menu={{ items: menuItems, onClick: handleMenuClick }}
-            placement="bottomRight"
-            trigger={['click']}
-          >
-            <div className="header-user-dropdown">
-              <Avatar 
-                style={{ backgroundColor: getAvatarColor(user.role), cursor: 'pointer' }}
-                icon={<UserOutlined />}
-              >
-                {user.name?.substring(0, 2).toUpperCase()}
-              </Avatar>
-              <span className="header-user-name">{user.name}</span>
-            </div>
-          </Dropdown>
-        )}
+        {/* {user && ( */}
+        {/* )} */}
+
+        <button
+          className="btn-logout-header"
+          onClick={() => { logout(); navigate('/login'); }}
+          title="Sair"
+        >
+          <LogOut size={18} />
+          <span>Sair</span>
+        </button>
       </div>
     </header>
   );

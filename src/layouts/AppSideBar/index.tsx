@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSideBar } from '@context/SideBar';
 import { useAuth } from '@context/UserAuthentication';
-import { House, Search, PanelsTopLeft, Trophy, LogOut, Settings } from 'lucide-react';
+import { House, Search, PanelsTopLeft, Trophy, LogOut, Settings, Briefcase, Plus } from 'lucide-react';
 import './AppSideBar.css';
 
 export function AppSideBar() {
@@ -50,14 +50,18 @@ export function AppSideBar() {
             <span className="link-icon"><Trophy /></span>
             <span className="link-text">Ranking</span>
           </Link>
+        </div>
 
-          {user?.role === 'admin' && (
+        {user?.role === 'admin' && (
+          <div className="nav-section">
+            <div className="nav-section-title">Admin</div>
+
             <Link to="/users" className={`sidebar-link ${isActive('/users')}`}>
               <span className="link-icon">👥</span>
               <span className="link-text">Usuários</span>
             </Link>
-          )}
-        </div>
+          </div>
+        )}
 
         <div className="nav-section">
           <div className="nav-section-title">Minha Conta</div>
@@ -67,11 +71,43 @@ export function AppSideBar() {
             <span className="link-text">Meu Perfil</span>
           </Link>
 
-          <Link to="/settings" className={`sidebar-link ${isActive('/settings')}`}>
+          {/* <Link to="/settings" className={`sidebar-link ${isActive('/settings')}`}>
             <span className="link-icon">⚙️</span>
             <span className="link-text">Configurações Perfil</span>
-          </Link>
+          </Link> */}
         </div>
+
+        {(user?.accountType === 'freelancer' || user?.accountType === 'contractor') && (
+          <div className="nav-section">
+            <div className="nav-section-title">Trabalho</div>
+
+            {user?.accountType === 'contractor' && (
+              <>
+                <Link to="/projects/my" className={`sidebar-link ${isActive('/projects/my')}`}>
+                  <span className="link-icon"><Briefcase size={18} /></span>
+                  <span className="link-text">Meus Projetos</span>
+                </Link>
+                <Link to="/projects/my/create" className={`sidebar-link ${isActive('/projects/my/create')}`}>
+                  <span className="link-icon"><Plus size={18} /></span>
+                  <span className="link-text">Criar Projeto</span>
+                </Link>
+              </>
+            )}
+
+            {user?.accountType === 'freelancer' && (
+              <>
+                <Link to="/projects/applications" className={`sidebar-link ${isActive('/projects/applications')}`}>
+                  <span className="link-icon"><Briefcase size={18} /></span>
+                  <span className="link-text">Candidaturas</span>
+                </Link>
+                <Link to="/projects/my-jobs" className={`sidebar-link ${isActive('/projects/my-jobs')}`}>
+                  <span className="link-icon"><Briefcase size={18} /></span>
+                  <span className="link-text">Meus Jobs</span>
+                </Link>
+              </>
+            )}
+          </div>
+        )}
       </nav>
 
       {/* Footer */}

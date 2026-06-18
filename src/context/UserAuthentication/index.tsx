@@ -1,11 +1,14 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authHttpService } from '@features/auth/http/AuthHttpService';
+import { profileHttpService } from '@features/my-profile/http/ProfileHttpService';
 
 interface User {
   id: string;
   name: string;
   email: string;
   role: string;
+  avatarUrl?: string;
+  accountType?: 'freelancer' | 'contractor' | 'explorer';
 }
 
 interface AuthContextData {
@@ -13,6 +16,7 @@ interface AuthContextData {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  updateUser: (partial: Partial<User>) => void;
   loading: boolean;
 }
 
@@ -27,12 +31,47 @@ export function UserAuthenticationProvider({ children }: UserAuthenticationProvi
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in (from localStorage, token, etc.)
-    const storedUser = localStorage.getItem('user_data');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    const bootstrap = async () => {
+      const storedUser = localStorage.getItem('user_data');
+      const token = localStorage.getItem('auth_token');
+
+      if (!storedUser || !token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(storedUser) as User;
+        let hydratedUser: User = parsed;
+
+        // Refresh profile on startup so accountType/avatar stay in sync with backend.
+        const res = await profileHttpService.getMe();
+        hydratedUser = {
+          ...parsed,
+          accountType: res.data.accountType,
+          avatarUrl: res.data.avatarUrl ?? parsed.avatarUrl,
+          name: res.data.name || parsed.name,
+          email: res.data.email || parsed.email,
+          role: res.data.role || parsed.role,
+        };
+
+        setUser(hydratedUser);
+        localStorage.setItem('user_data', JSON.stringify(hydratedUser));
+      } catch {
+        // If profile fetch fails, keep the stored user as fallback.
+        try {
+          setUser(JSON.parse(storedUser));
+        } catch {
+          localStorage.removeItem('user_data');
+          localStorage.removeItem('auth_token');
+          setUser(null);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    bootstrap();
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -46,13 +85,24 @@ export function UserAuthenticationProvider({ children }: UserAuthenticationProvi
       }
       
       // Store user data
-      const userData = {
+      const userData: User = {
         id: response.user.id,
         name: response.user.name,
         email: response.user.email,
         role: response.user.role,
+        accountType: response.user.accountType,
+        avatarUrl: response.user.avatarUrl,
       };
-      
+
+      // Fetch full profile to get accountType and avatarUrl
+      try {
+        const res = await profileHttpService.getMe();
+        userData.accountType = res.data.accountType;
+        userData.avatarUrl = res.data.avatarUrl;
+      } catch {
+        // non-critical, proceed without it
+      }
+
       setUser(userData);
       localStorage.setItem('user_data', JSON.stringify(userData));
     } catch (error) {
@@ -69,6 +119,15 @@ export function UserAuthenticationProvider({ children }: UserAuthenticationProvi
     localStorage.removeItem('auth_token');
   };
 
+  const updateUser = (partial: Partial<User>) => {
+    setUser((prev) => {
+      if (!prev) return prev;
+      const updated = { ...prev, ...partial };
+      localStorage.setItem('user_data', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   return (
     <UserAuthenticationContext.Provider
       value={{
@@ -76,6 +135,7 @@ export function UserAuthenticationProvider({ children }: UserAuthenticationProvi
         isAuthenticated: !!user,
         login,
         logout,
+        updateUser,
         loading,
       }}
     >

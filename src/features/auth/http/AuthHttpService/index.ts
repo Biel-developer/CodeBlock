@@ -18,6 +18,8 @@ export interface LoginResponse {
     name: string;
     email: string;
     role: string;
+    accountType?: 'freelancer' | 'contractor' | 'explorer';
+    avatarUrl?: string;
   };
 }
 

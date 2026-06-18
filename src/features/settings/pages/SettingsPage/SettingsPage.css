@@ -114,6 +114,10 @@ body {
   padding: 15px;
   border: 1px solid #e5e7eb;
   border-radius: 15px;
+  width: 100%;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
 }
 
 .option-card-settings.active {
