@@ -2,6 +2,39 @@
 
 Sistema de Freelancers desenvolvido com React, TypeScript e Vite.
 
+Gabriel do Nascimento Cano Andrade
+RA: 23000555-2
+
+Lucas de Oliveira Lima
+RA: 23000810-2
+
+Lucca Rocha Oliveira
+RA: 25184113-2
+
+Alexandre Lozano de Souza
+RA: 23003803-2
+
+Daniel Andrade
+RA: 23000397-2
+
+Felipe Broetto Araujo
+RA: 23167564-2
+
+Felipe Duarte Milleo Consulim
+RA: 23011046-2
+
+
+
+Tarefas Totais = 78
+Daniel Andrade = 13
+Alexandre Lozano de Souza = 10
+Felipe Broetto Araujo = 11
+Felipe Duarte Milleo Consulim = 9
+Gabriel do Nascimento Cano Andrade = 9
+Lucas de Oliveira Lima = 14
+Lucca Rocha Oliveira = 10
+sem responsavel = 3
+
 ## 🚀 Tecnologias
 
 - **React 18** — Biblioteca para interfaces de usuário
